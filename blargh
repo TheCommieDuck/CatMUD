@@ -1,0 +1,39 @@
+
+To create a new instance of something:
+create(Type, Name).
+create(Type, Name, ID).
+create(Type, Name, ID, Properties)
+
+Type - the type of the object (for a generic object, 'object'). Can be abstract!
+Name - the initial alias for the object; is what the object is initially referred to as.
+ID - [Optional] a handle to refer to this specific object as.
+Properties - [Optional] a list of properties of this object. Same as defining them all separately afterwards.
+
+dig(Name)
+dig(Name, ID)
+dig(Name, ID, Properties)
+
+Shortcuts for create/2, create/3, create/4 with Type=room.
+
+After creating an object, it is the active_object until another object is created. Anything referred to without an explicit ID will be assumed to be the active object.
+If an object is not a room, it is placed in the active room.
+
+
+
+
+In all examples, the ID is the omitted first argument.
+
+Properties of common objects:
+
+description(Thing)
+
+Gives the description of a thing when used with examine or look. If not given, uses the default for the given type.
+
+alias(Thing, Aliases)
+
+Adds aliases for a thing; things can also be called this. 
+
+exit(Direction, Room2, ExitID)
+
+Adds an exit to a room in a specific direction, leading to Room2. It is bidirectional. The ID can be used for assigning a door to this exit.
+
