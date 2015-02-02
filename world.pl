@@ -1,7 +1,7 @@
 :-use_module([parser, verify]).
 
 go:-
-	asserta(debug).
+	asserta(assert_stuff:debug_log).
 
 main:-
 	startup,
@@ -13,8 +13,8 @@ startup:-
 	set_random(seed(69)),
 	read_file_to_terms('basic_facts.pl', Terms, []),
 	load_game(Terms, _), !,
-	load_world('city.pl'),
-	write('setup done!'), !.
+	load_world('city.pl'), !,
+	write('setup done!').
 
 run:-
 	repeat,

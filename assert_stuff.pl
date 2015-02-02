@@ -13,8 +13,10 @@ assert_thing_overwrite(Thing):-
 	create_predicate_template(Thing, 1, ExistingThing),
 	(
 		retract(things:ExistingThing),
+		(debug_log, writef('Asserting/overwriting %w.', [Thing]), nl ; true),
 		asserta(things:Thing), !
 		;
+		(debug_log, writef('Asserting %w.', [Thing]), nl ; true),
 		asserta(things:Thing)
 	).
 
@@ -23,8 +25,9 @@ assert_thing(Thing):-
 	create_predicate_template(Thing, 1, ExistingThing),
 	(
 		clause(things:ExistingThing, _),
-		writef('%w was already asserted', [Thing])
+		(debug_log, writef('%w was already asserted', [Thing]), nl ; true)
 		;
+		(debug_log, writef('Asserting %w.', [Thing]), nl ; true),
 		asserta(things:Thing)
 	).
 
