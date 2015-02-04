@@ -1,27 +1,13 @@
-:-use_module([parser, verify]).
-
-go:-
-	asserta(assert_stuff:debug_log).
+:-use_module([parser, verify, server]).
 
 main:-
-	startup,
-	run,
+	server:startup,
+	server:run,
 	shutdown.
 
-startup:-
-	go,
-	set_random(seed(69)),
-	read_file_to_terms('basic_facts.pl', Terms, []),
-	load_game(Terms, _), !,
-	load_world('city.pl'), !,
-	write('setup done!').
-
-run:-
-	repeat,
-	sleep(0.1),
-	tick,
-	!, fail.
-
+shutdown:-
+	write('baibai').
+	
 tick:-
 	get_player_action(me, Action),
 	do_player_action(me, Action).

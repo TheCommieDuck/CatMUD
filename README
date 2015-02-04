@@ -1,0 +1,12 @@
+CatMUD is a MUD server (and MUD game) written in Prolog. 
+It is not designed to be robust, nor widely used, so it's probably not going to stand up to a regular MUD environment.
+
+Current Features (mostly just skeletal):
+Object Model
+Server
+Parser
+
+TODO:
+
+Look into proper telnet protocols and mud protocols and stuff.
+main loop!
