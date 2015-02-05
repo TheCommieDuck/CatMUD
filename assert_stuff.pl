@@ -1,7 +1,6 @@
 :- module(assert_stuff, [fact/1, assert_thing/1, assert_thing_overwrite/1]).
+:- use_module(utils).
 
-fact(Fact):-
-	clause(Fact, true).
 
 create_predicate_template(Original, Arg_Position, New):-
 	functor(Original, Name, Arity),

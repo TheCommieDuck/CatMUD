@@ -1,19 +1,6 @@
-:- module(verify, [load_game/2, clean_for_testing/0]).
+:- module(verify, [load_game/2, load_world/3, clean_for_testing/0]).
 
 :-use_module([library(uuid), assert_stuff]).
-
-
-
-make_truncated_uuid(IDStr):-
-	uuid(UUID),
-	atom_string(UUID, UUIDString),
-	sub_string(UUIDString, _, 6, 0, IDStr).
-
-generate_ID(Name, ID):-
-	make_truncated_uuid(UUID),
-	sub_string(Name, _, 8, _, SubStr),
-	string_concat(SubStr, UUID, ID),
-	\+ clause(things:thing(ID, _), _).
 
 load_game([Rule|Rules], Success):-
 	load_game([Rule|Rules], 1, Success).
@@ -27,6 +14,10 @@ load_game([], _, true).
 
 load_game(_, _, false).
 
+load_world(File, Name, Success):-
+	writef_line('Loading %w..', [Name]),
+	read_file_to_terms(File, Terms, []),
+	load_game(Terms, Success).
 %
 % Create objects/rooms
 %
